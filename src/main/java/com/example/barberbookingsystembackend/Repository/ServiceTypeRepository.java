@@ -1,9 +1,11 @@
 package com.example.barberbookingsystembackend.Repository;
 
-import com.example.barberbookingsystembackend.Entity.Service;
+import com.example.barberbookingsystembackend.Entity.ServiceType;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ServiceRepository extends CrudRepository<Service, Long> {
+public interface ServiceTypeRepository extends CrudRepository<ServiceType, Long> {
+
+
 }

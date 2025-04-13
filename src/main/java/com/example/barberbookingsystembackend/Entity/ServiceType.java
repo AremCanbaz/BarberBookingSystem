@@ -5,16 +5,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Service {
+public class ServiceType {
     @Id
     @GeneratedValue
     private long id;
     private String name;
-    private int time;
+    private double price;
+    private int durationInMinutes;
 
-    public Service() {
+    public ServiceType() {
     }
-    public Service(String name, int time) {
+    public ServiceType(String name, int time) {
         this.name = name;
     }
     public long getId() {
@@ -29,11 +30,17 @@ public class Service {
     public void setName(String name) {
         this.name = name;
     }
-    public int getTime() {
-        return time;
+    public double getPrice() {
+        return price;
     }
-    public void setTime(int time) {
-        this.time = time;
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    public int getDurationInMinutes() {
+        return durationInMinutes;
+    }
+    public void setDurationInMinutes(int durationInMinutes) {
+        this.durationInMinutes = durationInMinutes;
     }
 }
 
