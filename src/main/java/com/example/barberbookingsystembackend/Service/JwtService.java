@@ -17,13 +17,14 @@ import java.util.Date;
 
 @Service
 public class JwtService {
-
-    private final Key secretKey;
-
+    private Key secretKey;
     public JwtService(@Value("${app.api-key}") String secretKeyEncoded) {
         this.secretKey = Keys.hmacShaKeyFor(Base64.getDecoder().decode(secretKeyEncoded));
     }
 
+
+    public JwtService() {
+    }
 
     public String generateToken(Costumer costumer) {
         return Jwts.builder()
