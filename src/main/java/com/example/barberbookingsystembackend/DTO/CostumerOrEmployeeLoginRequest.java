@@ -9,6 +9,7 @@ public class CostumerOrEmployeeLoginRequest {
         this.email = email;
         this.password = password;
     }
+    public CostumerOrEmployeeLoginRequest(){}
     public String getEmail() {
         return email;
     }

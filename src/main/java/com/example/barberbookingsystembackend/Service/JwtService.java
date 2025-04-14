@@ -23,9 +23,6 @@ public class JwtService {
     }
 
 
-    public JwtService() {
-    }
-
     public String generateToken(Costumer costumer) {
         return Jwts.builder()
                 .setSubject(costumer.getEmail())

@@ -1,16 +1,13 @@
 package com.example.barberbookingsystembackend.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 public class Booking {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDateTime date;
 
@@ -24,13 +21,17 @@ public class Booking {
     @ManyToOne
     private Costumer costumer;
 
+    @ManyToOne
+    private Salon salon;
+
     public Booking() {
     }
-    public Booking(LocalDateTime date, Employee employee, ServiceType serviceType, Costumer costumer) {
+    public Booking(LocalDateTime date, Employee employee, ServiceType serviceType, Costumer costumer, Salon salon) {
         this.date = date;
         this.employee = employee;
         this.serviceType = serviceType;
         this.costumer = costumer;
+        this.salon = salon;
     }
     public long getId() {
         return id;
@@ -61,5 +62,11 @@ public class Booking {
     }
     public void setCostumer(Costumer costumer) {
         this.costumer = costumer;
+    }
+    public Salon getSalon() {
+        return salon;
+    }
+    public void setSalon(Salon salon) {
+        this.salon = salon;
     }
 }

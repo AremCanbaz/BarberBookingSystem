@@ -1,22 +1,31 @@
 package com.example.barberbookingsystembackend.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class ServiceType {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private double price;
     private int durationInMinutes;
 
+    @ManyToOne
+    private Salon salon;
+
+    @OneToMany(mappedBy = "serviceType")
+    private List<Booking> bookings;
     public ServiceType() {
     }
-    public ServiceType(String name, int time) {
+    public ServiceType(String name, double price, int durationInMinutes, Salon salon) {
         this.name = name;
+        this.price = price;
+        this.durationInMinutes = durationInMinutes;
+        this.salon = salon;
+
     }
     public long getId() {
         return id;

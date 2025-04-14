@@ -1,6 +1,7 @@
 package com.example.barberbookingsystembackend.Controller;
 
 import com.example.barberbookingsystembackend.DTO.CostumerOrEmployeeLoginRequest;
+import com.example.barberbookingsystembackend.DTO.EmployeeDTO;
 import com.example.barberbookingsystembackend.Entity.Costumer;
 import com.example.barberbookingsystembackend.Entity.Employee;
 import com.example.barberbookingsystembackend.Service.CostumerService;
@@ -22,15 +23,15 @@ public class EmployeeController {
 
 
     @PostMapping("/save")
-    public ResponseEntity<String> addemployee(@RequestBody Employee employee) {
+    public ResponseEntity<String> addemployee(@RequestBody EmployeeDTO employee) {
         logger.info("Saving Employee",employee);
-        employeeService.addEmployee(employee);
+        employeeService.addEmployeeFromDTO(employee);
         logger.info("Employee Saved",employee);
         return ResponseEntity.ok("Employee added successfully");
     }
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody CostumerOrEmployeeLoginRequest request) {
-        logger.info("Login attempt for: {}", request.getEmail());
+        logger.info("Login attempt for: {}", request.getEmail(), " Password", request.getPassword());
         try {
             String token = employeeService.login(request.getEmail(), request.getPassword());
             return ResponseEntity.ok().body(token);

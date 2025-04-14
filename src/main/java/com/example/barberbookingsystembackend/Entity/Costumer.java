@@ -1,14 +1,13 @@
     package com.example.barberbookingsystembackend.Entity;
 
-    import jakarta.persistence.Column;
-    import jakarta.persistence.Entity;
-    import jakarta.persistence.GeneratedValue;
-    import jakarta.persistence.Id;
+    import jakarta.persistence.*;
+
+    import java.util.List;
 
     @Entity
     public class Costumer {
         @Id
-        @GeneratedValue
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
         private String firstName;
         private String lastName;
@@ -16,6 +15,14 @@
         private String email;
         private String phone;
         private String password;
+
+        @OneToMany(mappedBy = "costumer")
+        private List<Booking> bookings;
+
+        @OneToMany(mappedBy = "costumer")
+        private List<CostumerSalon> salonRelation;
+
+
 
         public Costumer() {
         }
@@ -61,5 +68,17 @@
         }
         public void setPassword(String password) {
             this.password = password;
+        }
+        public List<Booking> getBookings() {
+            return bookings;
+        }
+        public void setBookings(List<Booking> bookings) {
+            this.bookings = bookings;
+        }
+        public List<CostumerSalon> getSalonRelation() {
+            return salonRelation;
+        }
+        public void setSalonRelation(List<CostumerSalon> salonRelation) {
+            this.salonRelation = salonRelation;
         }
     }
